@@ -63,11 +63,9 @@ internal class JsonEncode
     protected bool serializeObject(JsonObject jsonObject)
     {
         builder.Append("{");
-
-        IDictionaryEnumerator e = jsonObject.GetEnumerator();
         bool first = true;
 
-        while (e.MoveNext())
+        foreach(DictionaryEntry e in jsonObject)
         {
             string key = e.Key.ToString();
             object value = e.Value;
@@ -103,12 +101,15 @@ internal class JsonEncode
             {
                 builder.Append(",");
             }
+            else
+            {
+                first = false;
+            }
+
             if (!serializeValue(jsonArray[i]))
             {
                 return false;
             }
-
-            first = false;
         }
 
         builder.Append("]");
@@ -122,9 +123,9 @@ internal class JsonEncode
         char[] charArray = str.ToCharArray();
         for (int i = 0; i < charArray.Length; i++)
         {
-            char c = charArray[i];
+            char currentChar = charArray[i];
 
-            switch (c)
+            switch (currentChar)
             {
                 case '"':
                     builder.Append("\\\"");
@@ -151,10 +152,10 @@ internal class JsonEncode
                     break;
 
                 default:
-                    int codepoint = Convert.ToInt32(c);
+                    int codepoint = Convert.ToInt32(currentChar);
                     if ((codepoint >= 32) && (codepoint <= 126))
                     {
-                        builder.Append(c);
+                        builder.Append(currentChar);
                     }
                     else
                     {
@@ -174,9 +175,9 @@ internal class JsonEncode
         return true;
     }
 
-    protected bool isNumeric(object o)
+    protected bool isNumeric(object value)
     {
         double result;
-        return (o == null) ? false : Double.TryParse(o.ToString(), out result);
+        return (value == null) ? false : Double.TryParse(value.ToString(), NumberStyles.Number, CultureInfo.InvariantCulture, out result);
     }
 }
