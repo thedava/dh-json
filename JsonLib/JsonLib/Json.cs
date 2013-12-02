@@ -7,10 +7,10 @@ public class Json
     /// <summary>
     /// Enables the STRICT mode for JSON operations
     /// 
-    /// If STRICT is on, all methods will throw exception.
+    /// If STRICT is on, all methods will throw exceptions.
     /// If STRICT is off, they will return NULL instead of throwing an exception
     /// </summary>
-    public static bool STRICT = false;
+    public static bool STRICT = true;
 
 
 
