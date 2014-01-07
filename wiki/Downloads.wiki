@@ -1,8 +1,8 @@
 ==Latest Build==
 
-*v1.0* (_2013-12-02_)
+*v1.0* (_2013-12-09_)
 
-Download: [http://dh-json.googlecode.com/svn/downloads/JsonLib_2013-12-02_bin.zip Binary (.dll)] | [http://dh-json.googlecode.com/svn/downloads/JsonLib_2013-12-02_src.zip Source]
+Download: [http://dh-json.googlecode.com/svn/downloads/JsonLib_2013-12-09_bin.zip Binary (.dll)] | [http://dh-json.googlecode.com/svn/downloads/JsonLib_2013-12-09_src.zip Source]
 
 
 
@@ -11,6 +11,6 @@ Download: [http://dh-json.googlecode.com/svn/downloads/JsonLib_2013-12-02_bin.zi
 
 ==Older Builds==
 
-_none_
+_none stable_
 
 http://piwik.davahome.net/piwik.php?idsite=4&rec=1&action_name=dh-json-downloads&f=tr.png

@@ -4,19 +4,26 @@ using System.Text;
 
 internal class Caster
 {
-    private static void throwError(object field, string dataType)
+    private static void throwError(object field, string dataType, Exception error = null)
     {
         string def = (field is Int32) ? "index" : "field";
-        throw new InvalidCastException("The " + def + " '" + field + "' does not contain an " + dataType + "!");
+        string msg = "The " + def + " '" + field + "' does not contain an " + dataType + "!";
+
+        throw (error == null) ? new InvalidCastException(msg) : new InvalidCastException(msg, error);
     }
 
     public static int? ParseInt(object value, object field)
     {
-        int? result = (value as Int32?);
-
-        if (Json.STRICT && !result.HasValue)
-            throwError(field, "Int32");
-
+        int? result = null;
+        try
+        {
+            result = Convert.ToInt32(value);
+        }
+        catch (Exception error)
+        {
+            if (Json.STRICT && !result.HasValue)
+                throwError(field, "Int32", error);
+        }
         return result;
     }
 
@@ -27,21 +34,31 @@ internal class Caster
 
     public static double? ParseDouble(object value, object field)
     {
-        double? result = (value as Double?);
-
-        if (Json.STRICT && !result.HasValue)
-            throwError(field, "Double");
-
+        double? result = null;
+        try
+        {
+            result = Convert.ToDouble(value);
+        }
+        catch (Exception error)
+        {
+            if (Json.STRICT && !result.HasValue)
+                throwError(field, "Double", error);
+        }
         return result;
     }
 
     public static bool? ParseBool(object value, object field)
     {
-        bool? result = (value as Boolean?);
-
-        if (Json.STRICT && !result.HasValue)
-            throwError(field, "Boolean");
-
+        bool? result = null;
+        try
+        {
+            result = Convert.ToBoolean(value);
+        }
+        catch (Exception error)
+        {
+            if (Json.STRICT && !result.HasValue)
+                throwError(field, "Boolean", error);
+        }
         return result;
     }
 
