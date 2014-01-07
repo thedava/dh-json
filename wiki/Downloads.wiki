@@ -1,6 +1,6 @@
 ==Latest Build==
 
-*v1.0* (_2013-12-09_)
+*v1.0.0.1* (_2013-12-09_)
 
 Download: [http://dh-json.googlecode.com/svn/downloads/JsonLib_2013-12-09_bin.zip Binary (.dll)] | [http://dh-json.googlecode.com/svn/downloads/JsonLib_2013-12-09_src.zip Source]
 
