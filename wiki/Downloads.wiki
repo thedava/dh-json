@@ -12,5 +12,3 @@ Download: [http://dh-json.googlecode.com/svn/downloads/JsonLib_2013-12-09_bin.zi
 ==Older Builds==
 
 _none stable_
-
-http://piwik.davahome.net/piwik.php?idsite=4&rec=1&action_name=dh-json-downloads&f=tr.png
