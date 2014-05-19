@@ -6,6 +6,8 @@ You can also check the testing project to find your answers. Just check the [htt
 
 
 
+
+
 == Encode ==
 
 The most common way is to build your own _JsonObject_ and fill it with values. The JsonObject class derives from the System.Collections.Generic.Hashtable class. All methods are available.
@@ -55,6 +57,8 @@ string jsonString = Json.Encode(0.1);
 // Boolean
 string jsonString = Json.Encode(true);
 </code>
+
+
 
 
 
@@ -140,13 +144,17 @@ foreach (JsonObject obj in jsonArray)
 
 
 
+
+
 == STRICT mode ==
 
 You are able to enable and disable the strict mode of the parser by changing the value of a static var.
+
 If the STRICT mode is enabled all functions of the parser will throw exceptions on errors.
+
 If you disable it all methods will just return NULL instead of throwing an error.
 
-Default and *recommended* value is *ON*
+Default and *recommended* value is *TRUE*
 
 <code language="csharp">
 Json.STRICT = true;
