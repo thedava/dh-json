@@ -148,11 +148,9 @@ foreach (JsonObject obj in jsonArray)
 
 == STRICT mode ==
 
-You are able to enable and disable the strict mode of the parser by changing the value of a static var.
-
-If the STRICT mode is enabled all functions of the parser will throw exceptions on errors.
-
-If you disable it all methods will just return NULL instead of throwing an error.
+You are able to enable and disable the strict mode of the parser by changing the value of a static var.<br>
+If the STRICT mode is enabled all functions of the parser will throw exceptions on errors.<br>
+If you disable it all methods will just return NULL instead of throwing an error.<br>
 
 Default and *recommended* value is *TRUE*
 
