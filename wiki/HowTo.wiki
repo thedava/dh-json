@@ -1,0 +1,153 @@
+= HowTo =
+
+This chapter will describe you how to use this JSON parser in particular.
+
+You can also check the testing project to find your answers. Just check the [/p/dh-json/source/browse/trunk/JsonLib/JsonTest/Program.cs Program.cs] from the JsonTest project to see how the JSON parser works.
+
+
+
+== Encode ==
+
+The most common way is to build your own _JsonObject_ and fill it with values. The JsonObject class derives from the System.Collections.Generic.Hashtable class. All methods are available.
+
+<code language="csharp">
+var jsonObject = new JsonObject();
+
+// Direct access
+jsonObject["param"] = "value";
+
+// There is also an Add method available
+jsonObject.Add("anotherParam", "moarValues");
+</code>
+
+
+To encode this data you can simply call the *Json.Encode* method. 
+
+<code language="csharp">
+string jsonString = Json.Encode(jsonObject);
+</code>
+
+
+Thats all. You can also encode other valid JSON values like Arrays, Strings, Booleans and Numbers (double).
+
+
+It's always the same way:
+
+
+<code language="csharp">
+// The JsonArray class derives from the ArrayList class
+var jsonArray = new JsonArray();
+jsonArray.Add("value");
+string jsonString = Json.Encode(jsonArray);
+</code>
+
+<code language="csharp">
+// String
+string jsonString = Json.Encode("value");
+</code>
+
+<code language="csharp">
+// Double
+string jsonString = Json.Encode(0.1);
+</code>
+
+<code language="csharp">
+// Boolean
+string jsonString = Json.Encode(true);
+</code>
+
+
+
+== Decode ==
+
+The decode of data is a little bit more complicated. The easiest way of use is when you know how your data looks.
+
+
+If you parse an Array or an Object then you can use the default *Json.Decode* method. It will always return an object that conforms the interface [/p/dh-json/source/browse/trunk/JsonLib/JsonLib/IJsonResult.cs IJsonResult].
+
+<code language="csharp">
+// Fetch object
+JsonObject jsonObject = Json.Decode(jsonStringWithObject).ToObject();
+
+// Fetch array
+JsonArray jsonArray = Json.Decode(jsonStringWithArray).ToArray();
+</code>
+
+
+If you want to decode just simple values you need to know the type of them.
+
+<code language="csharp">
+// Fetch string
+string stringValue = Json.DecodeString(jsonStringWithString);
+
+// Fetch numbers
+double doubleValue = Json.DecodeDouble(jsonStringWithNumber);
+
+// Fetch boolean
+bool boolValue = Json.DecodeBool(jsonStringWithBoolean);
+</code>
+
+
+
+== Parsing data ==
+
+For this example we are working with this JsonObject:
+{{{
+{
+    "stringParam": "value",
+    "doubleParam": 0.1,
+    "intParam": 1,
+    "boolValue": false,
+    "arrayValue": [
+        {
+            "field": 1
+        },
+        {
+            "field": 2
+        },
+        {
+            "field": 3
+        }
+    ],
+}
+}}}
+
+
+To parse this JSON we need to write the following code:
+
+<code language="csharp">
+// The main JSON is an object
+JsonObject jsonObject = Json.Decode("-- The JSON from above --");
+
+// Parse the string
+string stringParam = jsonObject.GetString("stringParam");
+
+// Parse the double - ATTENTION: The return value is NOT a double! It is a Nullable double
+// Normally you can just use ".Value" to fetch your value. But you are also able to check
+// if the var is null (".HasValue")
+double? doubleParam = jsonObject.GetDouble("doubleParam").Value;
+
+// Parse the integer - Same like double
+string intParam = jsonObject.GetInt("intParam").Value;
+
+// Parse the array
+JsonArray jsonArray = jsonObject.GetArray("arrayValue");
+foreach (JsonObject obj in jsonArray)
+{
+    int field = obj.GetInt("field").Value;
+}
+</code>
+
+
+
+== STRICT mode ==
+
+You are able to enable and disable the strict mode of the parser by changing the value of a static var.
+If the STRICT mode is enabled all functions of the parser will throw exceptions on errors.
+If you disable it all methods will just return NULL instead of throwing an error.
+
+Default and *recommended* value is *ON*
+
+<code language="csharp">
+Json.STRICT = true;
+</code>
