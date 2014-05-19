@@ -2,7 +2,7 @@
 
 This chapter will describe you how to use this JSON parser in particular.
 
-You can also check the testing project to find your answers. Just check the [/p/dh-json/source/browse/trunk/JsonLib/JsonTest/Program.cs Program.cs] from the JsonTest project to see how the JSON parser works.
+You can also check the testing project to find your answers. Just check the [https://code.google.com/p/dh-json/source/browse/trunk/JsonLib/JsonTest/Program.cs Program.cs] from the JsonTest project to see how the JSON parser works.
 
 
 
@@ -63,7 +63,7 @@ string jsonString = Json.Encode(true);
 The decode of data is a little bit more complicated. The easiest way of use is when you know how your data looks.
 
 
-If you parse an Array or an Object then you can use the default *Json.Decode* method. It will always return an object that conforms the interface [/p/dh-json/source/browse/trunk/JsonLib/JsonLib/IJsonResult.cs IJsonResult].
+If you parse an Array or an Object then you can use the default *Json.Decode* method. It will always return an object that conforms the interface [https://code.google.com/p/dh-json/source/browse/trunk/JsonLib/JsonLib/IJsonResult.cs IJsonResult].
 
 <code language="csharp">
 // Fetch object
