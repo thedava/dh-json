@@ -1,0 +1,12 @@
+# JsonLib
+JsonLib/JsonLib/bin/Debug
+JsonLib/JsonLib/obj
+
+# JsonTest
+JsonLib/JsonTest/bin
+JsonLib/JsonTest/obj
+
+# General
+*.user
+*.suo
+*.pdb
