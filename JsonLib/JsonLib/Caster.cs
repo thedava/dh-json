@@ -5,7 +5,7 @@ using System.Text;
 /// <summary>
 /// This class is for converting values into other types
 /// </summary>
-internal class Caster
+public class Caster
 {
     /// <summary>
     /// Creates a caster exception (if strict mode is enabled)
@@ -32,7 +32,7 @@ internal class Caster
         int? result = null;
         try
         {
-            result = Convert.ToInt32(value);
+            result = Int32.Parse(ParseString(value));
         }
         catch (Exception error)
         {
@@ -65,7 +65,7 @@ internal class Caster
         double? result = null;
         try
         {
-            result = Convert.ToDouble(value);
+            result = Convert.ToDouble(ParseString(value).Replace('.', ','));
         }
         catch (Exception error)
         {
